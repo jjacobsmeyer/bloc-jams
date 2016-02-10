@@ -29,6 +29,21 @@ var albumMarconi = {
     ]
 };
 
+var albumDuke = {
+    name: 'The Hazard Play',
+    artist: 'Daisy Duke',
+    label: 'EM',
+    year: '1981',
+    albumArtUrl: 'assets/images/album_covers/20.png',
+    songs: [
+        { name: 'Dukes of Hazard', length: '1:01' },
+        { name: 'Racing Fire', length: '5:01' },
+        { name: 'Moonshine and Fires', length: '3:21' },
+        { name: 'Shine On', length: '3:14' },
+        { name: 'Lets roll', length: '2:15' },
+    ]
+};
+
 var createSongRow = function(songNumber, songName, songLength) {
     var template = 
         '<tr class="album-view-song-item">'
@@ -41,6 +56,12 @@ var createSongRow = function(songNumber, songName, songLength) {
     return template;
     
 };
+
+var albumTitle = document.getElementsByClassName('album-view-title')[0];
+var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
+var albumImage = document.getElementsByClassName('album-cover-art')[0];
+var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
 
 var setCurrentAlbum = function(album) {
     var albumTitle = document.getElementsByClassName('album-view-title')[0];
@@ -63,4 +84,14 @@ var setCurrentAlbum = function(album) {
 
 window.onload = function() {
     setCurrentAlbum(albumPicasso);  
+    
+    var albums = [albumPicasso, albumMarconi, albumDuke];
+    var index = 1;
+    albumImage.addEventListener("click", function(event) {
+        setCurrentAlbum(albums[index]);
+        index++;
+        if (index == albums.length) {
+            index = 0;
+        }
+    });
 };
